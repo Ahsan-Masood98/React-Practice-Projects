@@ -40,6 +40,12 @@ const cartSlice = createSlice({
   },
 });
 
+const sendCartData = (cartData) => {
+  return (dispatch) => {
+    dispatch();
+  };
+};
+
 export const cartActions = cartSlice.actions;
 
 export default cartSlice.reducer;
