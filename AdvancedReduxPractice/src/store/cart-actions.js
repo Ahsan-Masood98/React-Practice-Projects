@@ -13,7 +13,6 @@ export const fetchCartData = () => {
       const data = await response.json();
       return data;
     };
-
     try {
       const cartData = await fetchData();
       dispatch(
@@ -36,7 +35,7 @@ export const fetchCartData = () => {
 
 export const sendCartData = (cart) => {
   return async (dispatch) => {
-    // before we call dispatch we can doo anything like do some async code
+    // before we call dispatch we can do anything like do some async code
     dispatch(
       uiActions.showNotification({
         status: "pending",
@@ -44,7 +43,6 @@ export const sendCartData = (cart) => {
         message: "Sending cart data!",
       })
     );
-
     const sendRequest = async () => {
       const response = await fetch(
         "https://react-redux-http-cd5f4-default-rtdb.firebaseio.com/cart.json",
