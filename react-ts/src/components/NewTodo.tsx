@@ -1,23 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 import classes from "./NewTodo.module.css";
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+
+const NewTodo: React.FC = () => {
+  const todoCtx = useContext(TodosContext);
   const todoInputRef = useRef<HTMLInputElement>(null);
   const submitHandelr = (event: React.FormEvent) => {
     event.preventDefault();
-
-    // this ? in todoInputRef.current? tells typescript that it can be null
-    // or you dont know that cnnection is established or will be establisd
-    // in the future so it gives type of string or undefiened back and
-    // if dont get the value store null
-    // const enteredText = todoInputRef.current?.value;
-
-    // this ! in todoInputRef.current! tells type script that we are sure
-    // that the connection is established and the value will never be null
     const enteredText = todoInputRef.current!.value;
     if (enteredText.trim().length === 0) {
       return;
     }
-    props.onAddTodo(enteredText);
+    todoCtx.addTodo(enteredText);
   };
   return (
     <form onSubmit={submitHandelr} className={classes.form}>
